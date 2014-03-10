@@ -28,13 +28,13 @@ function(
 		var menuView = new MenuView();
 		App.menu.show(menuView);
 
-		var mainController = new MainController({
+		App.mainController = new MainController({
 			mainRegion: App.main
 		});
 
     //Searcher Router
-    var router = new MainRouter({
-      controller: mainController
+    App.router = new MainRouter({
+      controller: App.mainController
     });
 
 		Communicator.mediator.trigger('APP:START');
@@ -43,6 +43,8 @@ function(
   App.on('initialize:after', function () {
     Backbone.history.start();
   });
+
+  window.__app = App;
 
 	return App;
 });

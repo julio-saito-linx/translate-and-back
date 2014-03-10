@@ -18,7 +18,7 @@ function( Backbone, Communicator, View010InputTmpl  ) {
 
     /* ui selector cache */
     ui: {
-      button: 'button'
+      input: 'input[type="text"]'
     },
 
     /* Ui events hash */
@@ -27,11 +27,14 @@ function( Backbone, Communicator, View010InputTmpl  ) {
     },
 
     goNext: function() {
+      this.model.set('text', this.ui.input.val());
       Communicator.mediator.trigger('goto', 'path');
     },
 
     /* on render callback */
-    onRender: function() {}
+    onShow: function() {
+      this.ui.input.val(this.model.get('text'));
+    }
   });
 
 });

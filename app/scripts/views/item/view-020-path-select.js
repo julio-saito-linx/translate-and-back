@@ -1,28 +1,28 @@
 define([
-	'backbone',
+  'backbone',
   'communicator',
-	'hbs!tmpl/item/view-020-path-select_tmpl'
+  'hbs!tmpl/item/view-020-path-select_tmpl'
 ],
 function( Backbone, Communicator, View020PathSelectTmpl  ) {
-    'use strict';
+  'use strict';
 
-	/* Return a ItemView class definition */
-	return Backbone.Marionette.ItemView.extend({
+  /* Return a ItemView class definition */
+  return Backbone.Marionette.ItemView.extend({
 
-		initialize: function() {
-			console.log("initialize a View020PathSelect ItemView");
-		},
-		
-    	template: View020PathSelectTmpl,
-        
+    initialize: function() {
+      console.log('initialize a View020PathSelect ItemView');
+    },
+    
+    template: View020PathSelectTmpl,
+      
 
-    	/* ui selector cache */
-    	ui: {
-        button: 'button'
-      },
+    /* ui selector cache */
+    ui: {
+      input: 'input[type="text"]'
+    },
 
-		/* Ui events hash */
-		events: {
+    /* Ui events hash */
+    events: {
       'click button': 'goNext'
     },
 
@@ -30,8 +30,10 @@ function( Backbone, Communicator, View020PathSelectTmpl  ) {
       Communicator.mediator.trigger('goto', 'result');
     },
 
-		/* on render callback */
-		onRender: function() {}
-	});
+    /* on render callback */
+    onShow: function() {
+      this.ui.input.val('pt,en,ja,en,pt');
+    }
+  });
 
 });
