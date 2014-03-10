@@ -24,11 +24,6 @@ db.once('open', function callback () {
 
     var Test = mongoose.model( 'test', testSchema );
 
-    /* set Baucis */
-    baucis.rest({
-        singular: 'test'
-    });
-
 	var app = express();
 
 	app.configure(function(){
@@ -38,7 +33,6 @@ db.once('open', function callback () {
 	    app.set('views', __dirname + '../app/scripts/views');
 	});
 
-    app.use('/api/v1', baucis());
 
 	// simple log
 	app.use(function(req, res, next){
