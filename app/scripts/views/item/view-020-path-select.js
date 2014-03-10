@@ -1,8 +1,9 @@
 define([
 	'backbone',
+  'communicator',
 	'hbs!tmpl/item/view-020-path-select_tmpl'
 ],
-function( Backbone, View020PathSelectTmpl  ) {
+function( Backbone, Communicator, View020PathSelectTmpl  ) {
     'use strict';
 
 	/* Return a ItemView class definition */
@@ -16,10 +17,18 @@ function( Backbone, View020PathSelectTmpl  ) {
         
 
     	/* ui selector cache */
-    	ui: {},
+    	ui: {
+        button: 'button'
+      },
 
 		/* Ui events hash */
-		events: {},
+		events: {
+      'click button': 'goNext'
+    },
+
+    goNext: function() {
+      Communicator.mediator.trigger('goto', 'result');
+    },
 
 		/* on render callback */
 		onRender: function() {}
