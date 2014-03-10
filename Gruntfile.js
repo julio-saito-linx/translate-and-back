@@ -4,13 +4,6 @@ var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// use this if you want to match all subfolders:
-// 'test/spec/**/*.js'
-// templateFramework: 'handlebars'
-
 module.exports = function (grunt) {
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -29,11 +22,6 @@ module.exports = function (grunt) {
         // watch list
         watch: {
             
-            compass: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-                tasks: ['compass']
-            },
-            
             livereload: {
                 files: [
                     
@@ -41,9 +29,7 @@ module.exports = function (grunt) {
                     '{.tmp,<%= yeoman.app %>}/styles/{,**/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js',
                     '{.tmp,<%= yeoman.app %>}/templates/{,**/}*.hbs',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-                    
-                    'test/spec/{,**/}*.js'
+                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}'
                 ],
                 tasks: ['exec'],
                 options: {
@@ -59,25 +45,6 @@ module.exports = function (grunt) {
             }*/
         },
 
-        // testing server
-        connect: {
-            testserver: {
-                options: {
-                    port: 1234,
-                    base: '.'
-                }
-            }
-        },
-
-        // mocha command
-        exec: {
-            mocha: {
-                command: 'mocha-phantomjs http://localhost:<%= connect.testserver.options.port %>/test',
-                stdout: true
-            }
-        },
-
-        
         // express app
         express: {
             options: {
@@ -94,20 +61,8 @@ module.exports = function (grunt) {
                     script: 'server/app.js'
                 }
             },
-            test: {
-                options: {
-                    script: 'server/app.js'
-                }
-            }
         },
         
-
-        // open app and test page
-        open: {
-            server: {
-                path: 'http://localhost:<%= express.options.port %>'
-            }
-        },
 
         clean: {
             dist: ['.tmp', '<%= yeoman.dist %>/*'],
@@ -123,32 +78,11 @@ module.exports = function (grunt) {
             all: [
                 'Gruntfile.js',
                 '<%= yeoman.app %>/scripts/{,*/}*.js',
-                '!<%= yeoman.app %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
+                '!<%= yeoman.app %>/scripts/vendor/*'
             ]
         },
 
         
-        // compass
-        compass: {
-            options: {
-                sassDir: '<%= yeoman.app %>/styles',
-                cssDir: '.tmp/styles',
-                imagesDir: '<%= yeoman.app %>/images',
-                javascriptsDir: '<%= yeoman.app %>/scripts',
-                fontsDir: '<%= yeoman.app %>/styles/fonts',
-                importPath: 'app/bower_components',
-                relativeAssets: true
-            },
-            dist: {},
-            server: {
-                options: {
-                    debugInfo: true
-                }
-            }
-        },
-        
-
         // require
         requirejs: {
             dist: {
@@ -282,7 +216,6 @@ module.exports = function (grunt) {
         grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
     });
 
-    // starts express server with live testing via testserver
     grunt.registerTask('default', function (target) {
 
         // what is this??
@@ -294,29 +227,14 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'compass:server',
-            'connect:testserver',
             'express:dev',
-            'exec',
-            //'open',
             'watch'
         ]);
     });
 
-    // todo fix these
-    grunt.registerTask('test', [
-        'clean:server',
-        'createDefaultTemplate',
-        'handlebars',
-        'compass',
-        'connect:testserver',
-        'exec:mocha'
-    ]);
-
     grunt.registerTask('build', [
         'createDefaultTemplate',
         'handlebars',
-        'compass:dist',
         'useminPrepare',
         'requirejs',
         'imagemin',

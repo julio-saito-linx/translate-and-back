@@ -1,22 +1,25 @@
 define([
 	'backbone',
 	'communicator',
-	'hbs!tmpl/welcome'
+	'views/item/view-menu'
 ],
 
-function( Backbone, Communicator, Welcome_tmpl ) {
+function( Backbone, Communicator, MenuView ) {
     'use strict';
-
-	var welcomeTmpl = Welcome_tmpl;
 
 	var App = new Backbone.Marionette.Application();
 
 	/* Add application regions here */
-	App.addRegions({});
+	App.addRegions({
+		menu: '#menu',
+		main: '#main'
+	});
 
 	/* Add initializers here */
 	App.addInitializer( function () {
-		document.body.innerHTML = welcomeTmpl({ success: "CONGRATS!" });
+		var menuView = new MenuView();
+		App.menu.show(menuView);
+
 		Communicator.mediator.trigger("APP:START");
 	});
 

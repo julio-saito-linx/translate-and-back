@@ -43,6 +43,7 @@ db.once('open', function callback () {
 	// mount static
 	app.use(express.static( path.join( __dirname, '../app') ));
 	app.use(express.static( path.join( __dirname, '../.tmp') ));
+	// app.use(express.static('/bootstrap', path.join( __dirname, '../app/bower_components/bootstrap/dist') ));
 
 
 	// route index.html
