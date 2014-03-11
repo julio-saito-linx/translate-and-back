@@ -5,9 +5,10 @@ var http = require('http');
 var path = require('path');
 var async = require('async');
 var hbs = require('express-hbs');
-
-
 var mongoose = require('mongoose');
+
+var TranslateMicrosoft = require('./translate_microsoft');
+
 
 
 // start mongoose
@@ -49,6 +50,37 @@ db.once('open', function callback () {
 	// route index.html
 	app.get('/', function(req, res){
 	  res.sendfile( path.join( __dirname, '../app/index.html' ) );
+	});
+
+	// route API
+	app.get('/api/translate/:text/:lang1/:lang2', function(req, res){
+
+		if(req.params){
+			console.log('received with GET: ', req.params);
+		}
+
+		var text = req.params.text;
+		var lang1 = req.params.lang1;
+		var lang2 = req.params.lang2;
+
+		var translateMicrosoft = new TranslateMicrosoft();
+		
+		translateMicrosoft.getAccessToken()
+		.then(function(accessToken) {
+			
+			translateMicrosoft.translate(accessToken, text, lang1, lang2)
+			.then(function(result) {
+				
+				// parse result to remove the XML part
+				//'<string xmlns="http://schemas.microsoft.com/2003/10/Serialization/">I\'m going to the fair</string>'
+				var partialResult = result.substring(result.indexOf('>')+1);
+				var finalResult = partialResult.substring(0,partialResult.indexOf('<'))
+
+				res.send(finalResult);
+			});
+
+		});
+		
 	});
 
 	// start server

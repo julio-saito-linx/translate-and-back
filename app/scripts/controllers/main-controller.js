@@ -20,6 +20,7 @@ function(
 
 		initialize: function( options ) {
       Communicator.mediator.on('goto', this.changeView, this);
+      Communicator.mediator.on('translation:start', this.translationStart, this);
 
       this.mainRegion = options.mainRegion;
 
@@ -64,6 +65,20 @@ function(
 
       this.mainRegion.show(view);
     },
+
+    translationStart: function(transModel) {
+      var text = transModel.get('text');
+      var originLang = transModel.get('destLang');
+      var destLang = transModel.get('destLang');
+
+      $.ajax({
+        type: 'GET',
+        url: '/api/translate/' + text + '/' + originLang + '/' + destLang,
+      })
+      .done(function( result ) {
+        Communicator.mediator.trigger('translation:result', result);
+      });
+    }
 
 	});
 
