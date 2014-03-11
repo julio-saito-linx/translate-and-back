@@ -1,28 +1,37 @@
 define([
-	'backbone',
-	'hbs!tmpl/item/view-menu_tmpl'
+  'backbone',
+  'hbs!tmpl/item/view-menu_tmpl',
+  'communicator'
 ],
-function( Backbone, ViewMenuTmpl  ) {
-    'use strict';
+function( Backbone, ViewMenuTmpl, Communicator  ) {
+  'use strict';
 
-	/* Return a ItemView class definition */
-	return Backbone.Marionette.ItemView.extend({
+  /* Return a ItemView class definition */
+  return Backbone.Marionette.ItemView.extend({
 
-		initialize: function() {
-			console.log("initialize a ViewMenu ItemView");
-		},
-		
-    	template: ViewMenuTmpl,
-        
+    initialize: function() {
+      Communicator.mediator.on('view:show', this.setItemMenuActive, this);
+    },
+    
+    template: ViewMenuTmpl,
 
-    	/* ui selector cache */
-    	ui: {},
+    /* ui selector cache */
+    ui: {
+      liInput:  '#input',
+      liPath:   '#path',
+      liResult: '#result',
+    },
 
-		/* Ui events hash */
-		events: {},
+    /* Ui events hash */
+    events: {},
 
-		/* on render callback */
-		onRender: function() {}
-	});
+    setItemMenuActive: function(id) {
+      this.$el.find('li').removeClass('active');
+      this.$el.find('[href="#'+ id +'"]').parent().addClass('active');
+    },
+
+    /* on render callback */
+    onRender: function() {}
+  });
 
 });

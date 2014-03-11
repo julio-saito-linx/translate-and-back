@@ -4,7 +4,8 @@ define([
   'views/item/view-010-input',
   'views/item/view-020-path-select',
   'views/item/view-030-result',
-  'models/trans-model'
+  'models/translation-package',
+  './translator-controller'
 ],
 function( 
   Backbone,
@@ -12,22 +13,27 @@ function(
   InputView,
   PathView,
   ResultView,
-  TransModel
+  TranslationPackage,
+  TranslatorController
   ) {
     'use strict';
 
 	return Backbone.Marionette.Controller.extend({
 
 		initialize: function( options ) {
-      Communicator.mediator.on('goto', this.changeView, this);
-      Communicator.mediator.on('translation:start', this.translationStart, this);
-
       this.mainRegion = options.mainRegion;
 
-      this.trans = new TransModel();
+      this.translationPackage = new TranslationPackage();
+     
+      this.translatorController = new TranslatorController({
+        translationPackage: this.translationPackage
+      });
         
+
+      Communicator.mediator.on('goto', this.changeView, this);
+
       this.changeView('input');
-		},
+    },
 
     changeView: function(viewName) {
       var view;
@@ -44,40 +50,29 @@ function(
 
     goInputView: function() {
       var view = new InputView({
-        model: this.trans
+        model: this.translationPackage
       });
-
+      
+      Communicator.mediator.trigger('view:show', 'input');
       this.mainRegion.show(view);
     },
 
     goPathView: function() {
       var view = new PathView({
-        model: this.trans
+        model: this.translationPackage
       });
 
+      Communicator.mediator.trigger('view:show', 'path');
       this.mainRegion.show(view);
     },
 
     goResultView: function() {
       var view = new ResultView({
-        model: this.trans
+        model: this.translationPackage
       });
 
+      Communicator.mediator.trigger('view:show', 'result');
       this.mainRegion.show(view);
-    },
-
-    translationStart: function(transModel) {
-      var text = transModel.get('text');
-      var originLang = transModel.get('destLang');
-      var destLang = transModel.get('destLang');
-
-      $.ajax({
-        type: 'GET',
-        url: '/api/translate/' + text + '/' + originLang + '/' + destLang,
-      })
-      .done(function( result ) {
-        Communicator.mediator.trigger('translation:result', result);
-      });
     }
 
 	});

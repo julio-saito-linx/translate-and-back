@@ -2,19 +2,24 @@ define([
 	'backbone'
 ],
 function( Backbone ) {
-    'use strict';
+  'use strict';
 
 	/* Return a model class definition */
 	return Backbone.Model.extend({
 		initialize: function() {
-			console.log("initialize a TransModel model");
 		},
 
 		defaults: {
-      text: '',
-      originLang: 'pt',
-      destLang: 'en'
+      index: -1,
+
+      fromLang: '',
+      fromText: '',
+      fromSideTranslated: '',
+
+      toLang: '',
+      toText: '',
+      toSideTranslated: ''
     },
 
-    });
+  });
 });

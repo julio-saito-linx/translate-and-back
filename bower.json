@@ -14,7 +14,8 @@
     "require-handlebars-plugin": "~0.4.0",
     "chai": "~1.7.2",
     "sinon": "~1.7.3",
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.1.1",
+    "rsvp": "~3.0.6"
   },
   "devDependencies": {},
   "directory": "bower_components"

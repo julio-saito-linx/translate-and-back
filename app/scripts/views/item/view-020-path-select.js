@@ -27,6 +27,8 @@ function( Backbone, Communicator, View020PathSelectTmpl  ) {
     },
 
     goNext: function() {
+      this.model.set('langs', this.ui.input.val().split(','));
+      Communicator.mediator.trigger('translation:start', this.model);
       Communicator.mediator.trigger('goto', 'result');
     },
 
