@@ -10,11 +10,17 @@ function( Backbone ) {
 		},
 
 		defaults: {
-      originalLang: '',
+      originalLang: 'pt',
       originalText: '',
       langsPath: [],
       textItens: []
     },
+
+    includeLanguage: function(newLang) {
+      var langs = this.get('langsPath');
+      langs.push(newLang);
+      this.set('langsPath', langs);
+    }
 
   });
 });
