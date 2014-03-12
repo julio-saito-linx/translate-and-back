@@ -1,0 +1,223 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install' ]
+2 info using npm@1.2.18
+3 info using node@v0.10.15
+4 verbose read json /home/julio/_git/translate-backbone/package.json
+5 verbose readDependencies using package.json deps
+6 verbose install where, deps [ '/home/julio/_git/translate-backbone',
+6 verbose install   [ 'grunt',
+6 verbose install     'grunt-contrib-copy',
+6 verbose install     'grunt-contrib-concat',
+6 verbose install     'grunt-contrib-jst',
+6 verbose install     'grunt-contrib-uglify',
+6 verbose install     'grunt-contrib-compass',
+6 verbose install     'grunt-contrib-jshint',
+6 verbose install     'grunt-contrib-cssmin',
+6 verbose install     'grunt-contrib-connect',
+6 verbose install     'grunt-contrib-clean',
+6 verbose install     'grunt-contrib-htmlmin',
+6 verbose install     'grunt-contrib-imagemin',
+6 verbose install     'grunt-contrib-watch',
+6 verbose install     'grunt-mocha',
+6 verbose install     'grunt-usemin',
+6 verbose install     'grunt-bower-requirejs',
+6 verbose install     'grunt-requirejs',
+6 verbose install     'grunt-rev',
+6 verbose install     'grunt-open',
+6 verbose install     'load-grunt-tasks',
+6 verbose install     'connect-livereload',
+6 verbose install     'time-grunt',
+6 verbose install     'jshint-stylish' ] ]
+7 verbose from cache /home/julio/_git/translate-backbone/package.json
+8 info preinstall translatebackbone@0.0.0
+9 verbose read json /home/julio/_git/translate-backbone/node_modules/bower/package.json
+10 verbose read json /home/julio/_git/translate-backbone/node_modules/connect-livereload/package.json
+11 verbose read json /home/julio/_git/translate-backbone/node_modules/express/package.json
+12 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt/package.json
+13 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-bower-requirejs/package.json
+14 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-clean/package.json
+15 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-coffee/package.json
+16 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-compass/package.json
+17 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-concat/package.json
+18 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-connect/package.json
+19 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-copy/package.json
+20 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-cssmin/package.json
+21 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-htmlmin/package.json
+22 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-imagemin/package.json
+23 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-jshint/package.json
+24 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-jst/package.json
+25 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-uglify/package.json
+26 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-contrib-watch/package.json
+27 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-express-server/package.json
+28 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-mocha/package.json
+29 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-open/package.json
+30 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-requirejs/package.json
+31 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-rev/package.json
+32 verbose read json /home/julio/_git/translate-backbone/node_modules/grunt-usemin/package.json
+33 verbose read json /home/julio/_git/translate-backbone/node_modules/jshint-stylish/package.json
+34 verbose read json /home/julio/_git/translate-backbone/node_modules/load-grunt-tasks/package.json
+35 verbose read json /home/julio/_git/translate-backbone/node_modules/rsvp/package.json
+36 verbose read json /home/julio/_git/translate-backbone/node_modules/time-grunt/package.json
+37 verbose from cache /home/julio/_git/translate-backbone/package.json
+38 verbose readDependencies using package.json deps
+39 verbose from cache /home/julio/_git/translate-backbone/node_modules/bower/package.json
+40 verbose from cache /home/julio/_git/translate-backbone/node_modules/connect-livereload/package.json
+41 verbose from cache /home/julio/_git/translate-backbone/node_modules/express/package.json
+42 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt/package.json
+43 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-bower-requirejs/package.json
+44 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-clean/package.json
+45 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-coffee/package.json
+46 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-compass/package.json
+47 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-concat/package.json
+48 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-connect/package.json
+49 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-copy/package.json
+50 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-cssmin/package.json
+51 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-htmlmin/package.json
+52 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-imagemin/package.json
+53 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-jshint/package.json
+54 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-jst/package.json
+55 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-uglify/package.json
+56 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-contrib-watch/package.json
+57 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-express-server/package.json
+58 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-mocha/package.json
+59 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-open/package.json
+60 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-requirejs/package.json
+61 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-rev/package.json
+62 verbose from cache /home/julio/_git/translate-backbone/node_modules/grunt-usemin/package.json
+63 verbose from cache /home/julio/_git/translate-backbone/node_modules/jshint-stylish/package.json
+64 verbose from cache /home/julio/_git/translate-backbone/node_modules/load-grunt-tasks/package.json
+65 verbose from cache /home/julio/_git/translate-backbone/node_modules/rsvp/package.json
+66 verbose from cache /home/julio/_git/translate-backbone/node_modules/time-grunt/package.json
+67 verbose already installed skipping grunt-contrib-concat@~0.3.0 /home/julio/_git/translate-backbone
+68 verbose already installed skipping grunt-contrib-jst@~0.5.1 /home/julio/_git/translate-backbone
+69 verbose already installed skipping grunt-contrib-uglify@~0.3.1 /home/julio/_git/translate-backbone
+70 verbose already installed skipping grunt-contrib-compass@~0.7.0 /home/julio/_git/translate-backbone
+71 verbose already installed skipping grunt-contrib-jshint@~0.8.0 /home/julio/_git/translate-backbone
+72 verbose already installed skipping grunt-contrib-cssmin@~0.7.0 /home/julio/_git/translate-backbone
+73 verbose already installed skipping grunt-contrib-connect@~0.6.0 /home/julio/_git/translate-backbone
+74 verbose already installed skipping grunt-contrib-clean@~0.5.0 /home/julio/_git/translate-backbone
+75 verbose already installed skipping grunt-contrib-htmlmin@~0.1.3 /home/julio/_git/translate-backbone
+76 verbose already installed skipping grunt-contrib-imagemin@~0.5.0 /home/julio/_git/translate-backbone
+77 verbose already installed skipping grunt-mocha@~0.4.9 /home/julio/_git/translate-backbone
+78 verbose already installed skipping grunt-contrib-watch@~0.5.3 /home/julio/_git/translate-backbone
+79 verbose already installed skipping grunt-usemin@~0.1.12 /home/julio/_git/translate-backbone
+80 verbose already installed skipping grunt-bower-requirejs@~0.8.3 /home/julio/_git/translate-backbone
+81 verbose already installed skipping grunt-requirejs@~0.4.0 /home/julio/_git/translate-backbone
+82 verbose already installed skipping grunt-rev@~0.1.0 /home/julio/_git/translate-backbone
+83 verbose already installed skipping grunt-open@~0.2.3 /home/julio/_git/translate-backbone
+84 verbose already installed skipping load-grunt-tasks@~0.3.0 /home/julio/_git/translate-backbone
+85 verbose already installed skipping connect-livereload@~0.3.2 /home/julio/_git/translate-backbone
+86 verbose already installed skipping time-grunt@~0.2.8 /home/julio/_git/translate-backbone
+87 verbose already installed skipping jshint-stylish@~0.1.5 /home/julio/_git/translate-backbone
+88 verbose already installed skipping grunt@~0.4.1 /home/julio/_git/translate-backbone
+89 verbose already installed skipping grunt-contrib-copy@~0.5.0 /home/julio/_git/translate-backbone
+90 silly resolved []
+91 info build /home/julio/_git/translate-backbone
+92 verbose from cache /home/julio/_git/translate-backbone/package.json
+93 verbose linkStuff [ false, false, false, '/home/julio/_git' ]
+94 info linkStuff translatebackbone@0.0.0
+95 verbose linkBins translatebackbone@0.0.0
+96 verbose linkMans translatebackbone@0.0.0
+97 verbose rebuildBundles translatebackbone@0.0.0
+98 verbose rebuildBundles [ '.bin',
+98 verbose rebuildBundles   'bower',
+98 verbose rebuildBundles   'connect-livereload',
+98 verbose rebuildBundles   'express',
+98 verbose rebuildBundles   'grunt',
+98 verbose rebuildBundles   'grunt-bower-requirejs',
+98 verbose rebuildBundles   'grunt-contrib-clean',
+98 verbose rebuildBundles   'grunt-contrib-coffee',
+98 verbose rebuildBundles   'grunt-contrib-compass',
+98 verbose rebuildBundles   'grunt-contrib-concat',
+98 verbose rebuildBundles   'grunt-contrib-connect',
+98 verbose rebuildBundles   'grunt-contrib-copy',
+98 verbose rebuildBundles   'grunt-contrib-cssmin',
+98 verbose rebuildBundles   'grunt-contrib-htmlmin',
+98 verbose rebuildBundles   'grunt-contrib-imagemin',
+98 verbose rebuildBundles   'grunt-contrib-jshint',
+98 verbose rebuildBundles   'grunt-contrib-jst',
+98 verbose rebuildBundles   'grunt-contrib-uglify',
+98 verbose rebuildBundles   'grunt-contrib-watch',
+98 verbose rebuildBundles   'grunt-express-server',
+98 verbose rebuildBundles   'grunt-mocha',
+98 verbose rebuildBundles   'grunt-open',
+98 verbose rebuildBundles   'grunt-requirejs',
+98 verbose rebuildBundles   'grunt-rev',
+98 verbose rebuildBundles   'grunt-usemin',
+98 verbose rebuildBundles   'jshint-stylish',
+98 verbose rebuildBundles   'load-grunt-tasks',
+98 verbose rebuildBundles   'rsvp',
+98 verbose rebuildBundles   'time-grunt' ]
+99 verbose rebuild bundle /home/julio/_git/translate-backbone/node_modules/bower
+100 info build /home/julio/_git/translate-backbone/node_modules/bower
+101 verbose from cache /home/julio/_git/translate-backbone/node_modules/bower/package.json
+102 info preinstall bower@1.3.0
+103 verbose linkStuff [ false,
+103 verbose linkStuff   false,
+103 verbose linkStuff   false,
+103 verbose linkStuff   '/home/julio/_git/translate-backbone/node_modules' ]
+104 info linkStuff bower@1.3.0
+105 warn prefer global bower@1.3.0 should be installed with -g
+106 verbose linkBins bower@1.3.0
+107 verbose link bins [ { bower: 'bin/bower' },
+107 verbose link bins   '/home/julio/_git/translate-backbone/node_modules/.bin',
+107 verbose link bins   false ]
+108 verbose linkMans bower@1.3.0
+109 verbose rebuildBundles bower@1.3.0
+110 verbose rebuildBundles [ '.bin',
+110 verbose rebuildBundles   'abbrev',
+110 verbose rebuildBundles   'archy',
+110 verbose rebuildBundles   'bower-config',
+110 verbose rebuildBundles   'bower-endpoint-parser',
+110 verbose rebuildBundles   'bower-json',
+110 verbose rebuildBundles   'bower-logger',
+110 verbose rebuildBundles   'bower-registry-client',
+110 verbose rebuildBundles   'cardinal',
+110 verbose rebuildBundles   'chalk',
+110 verbose rebuildBundles   'chmodr',
+110 verbose rebuildBundles   'decompress-zip',
+110 verbose rebuildBundles   'fstream',
+110 verbose rebuildBundles   'fstream-ignore',
+110 verbose rebuildBundles   'glob',
+110 verbose rebuildBundles   'graceful-fs',
+110 verbose rebuildBundles   'handlebars',
+110 verbose rebuildBundles   'inquirer',
+110 verbose rebuildBundles   'insight',
+110 verbose rebuildBundles   'is-root',
+110 verbose rebuildBundles   'junk',
+110 verbose rebuildBundles   'lru-cache',
+110 verbose rebuildBundles   'mkdirp',
+110 verbose rebuildBundles   'mout',
+110 verbose rebuildBundles   'nopt',
+110 verbose rebuildBundles   'open',
+110 verbose rebuildBundles   'osenv',
+110 verbose rebuildBundles   'p-throttler',
+110 verbose rebuildBundles   'promptly',
+110 verbose rebuildBundles   'q',
+110 verbose rebuildBundles   'request',
+110 verbose rebuildBundles   'request-progress',
+110 verbose rebuildBundles   'retry',
+110 verbose rebuildBundles   'rimraf',
+110 verbose rebuildBundles   'semver',
+110 verbose rebuildBundles   'shell-quote',
+110 verbose rebuildBundles   'stringify-object',
+110 verbose rebuildBundles   'tar',
+110 verbose rebuildBundles   'tmp',
+110 verbose rebuildBundles   'update-notifier',
+110 verbose rebuildBundles   'which' ]
+111 error Error: EACCES, unlink '/home/julio/_git/translate-backbone/node_modules/.bin/bower'
+111 error  { [Error: EACCES, unlink '/home/julio/_git/translate-backbone/node_modules/.bin/bower']
+111 error   errno: 3,
+111 error   code: 'EACCES',
+111 error   path: '/home/julio/_git/translate-backbone/node_modules/.bin/bower' }
+112 error Please try running this command again as root/Administrator.
+113 error System Linux 3.11.0-18-generic
+114 error command "/usr/bin/nodejs" "/usr/bin/npm" "install"
+115 error cwd /home/julio/_git/translate-backbone
+116 error node -v v0.10.15
+117 error npm -v 1.2.18
+118 error path /home/julio/_git/translate-backbone/node_modules/.bin/bower
+119 error code EACCES
+120 error errno 3
+121 error stack Error: EACCES, unlink '/home/julio/_git/translate-backbone/node_modules/.bin/bower'
+122 verbose exit [ 3, true ]
