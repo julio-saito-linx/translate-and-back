@@ -33,11 +33,11 @@ module.exports = PageView.extend({
         translatorController.callTranslate(
             app.transPackage.sentence,
             langs[0],
-            langs[1],
-            function (result) {
-                this.model.result = result;
-            }.bind(this)
-        );
+            langs[1]
+        )
+        .then(function (result) {
+            this.model.result = result;
+        }.bind(this));
     },
 
 

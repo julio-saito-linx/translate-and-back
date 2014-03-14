@@ -8,6 +8,7 @@ var Router = require('./router');
 var MainView = require('./views/main');
 var Me = require('./models/me');
 var People = require('./models/people');
+var WildEmitter = require('wildemitter');
 
 var TransPackage = require('./models/transPackage');
 
@@ -35,6 +36,9 @@ module.exports = {
         // init our URL handlers and the history tracker
         this.router = new Router();
         this.history = Backbone.history;
+
+        //communicator
+        app.communicator = new WildEmitter();
 
         // wait for document ready to render our main view
         // this ensures the document has a body, etc.
