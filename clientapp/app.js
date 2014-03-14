@@ -1,15 +1,20 @@
 /*global app, me, $*/
-var stats = require('loading-stats');
+'use strict';
+
 var Backbone = require('backbone');
 var _ = require('underscore');
-var logger = require('andlog');
-var config = require('clientconfig');
 
 var Router = require('./router');
-var tracking = require('./helpers/metrics');
 var MainView = require('./views/main');
 var Me = require('./models/me');
 var People = require('./models/people');
+
+var TransPackage = require('./models/transPackage');
+
+// var stats = require('loading-stats');
+// var logger = require('andlog');
+// var config = require('clientconfig');
+// var tracking = require('./helpers/metrics');
 
 
 module.exports = {
@@ -20,6 +25,9 @@ module.exports = {
         _.extend(this, Backbone.Events);
 
         var self = window.app = this;
+
+        var transPackage = new TransPackage();
+        app.transPackage = transPackage;
 
         window.me = new Me();
         this.people = new People();
@@ -58,7 +66,7 @@ module.exports = {
     // about their page position.
     // It simply matches urls to figure out which item should
     // be 'active'.
-    renderPage: function (view, animation) {
+    renderPage: function (view /*, animation */) {
         var container = $('#pages');
 
         if (app.currentPage) {

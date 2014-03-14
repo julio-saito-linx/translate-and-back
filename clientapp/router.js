@@ -21,13 +21,13 @@ module.exports = Backbone.Router.extend({
     // ------- ROUTE HANDLERS ---------
     config: function () {
         app.renderPage(new Config({
-            model: me
+            model: app.transPackage
         }));
     },
 
     result: function () {
         app.renderPage(new Result({
-            model: me
+            model: app.transPackage
         }));
     },
 

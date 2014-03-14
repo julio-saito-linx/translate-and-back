@@ -20,7 +20,9 @@
     "semi-static": "0.0.5",
     "templatizer": "0.2.8",
     "underscore": "1.5.2",
-    "stylizer": "0.3.1"
+    "stylizer": "0.3.1",
+    "rsvp": "~3.0.6",
+    "querystring": "~0.2.0"
   },
   "devDependencies": {
     "precommit-hook": "0.3.8"

@@ -1,12 +1,10 @@
 section.page.config
-  h1 Translation :: Configure 
+  h1.page-header Configure
 
-  div.row
-    b Write a sentence: 
-    input.sentence
-
-  div.row
-    b Select the language path: 
-    input.languagePath
-
-  a(href="/test.css") config
+  .form-group
+    label(for='sentence') Sentence
+    input#sentence.form-control(type='text', placeholder='Type a sentence here to translate ever several languages and back to original')
+  .form-group
+    label(for='langPath') Language path
+    input#langPath.form-control(type='text', placeholder='pt,en,ja')
+  button.btn.btn-default.translate Translate

@@ -47,7 +47,7 @@ var clientApp = new Moonboots({
     main: fixPath('clientapp/app.js'),
     developmentMode: config.isDev,
     libraries: [
-        fixPath('clientapp/libraries/zepto.js')
+        fixPath('clientapp/libraries/jquery.min.js')
     ],
     stylesheets: [
         fixPath('public/css/bootstrap.min.css'),
@@ -78,6 +78,9 @@ var clientApp = new Moonboots({
         }
     }
 });
+
+var realApi = require('./API/translator_api');
+app.get('/api/translate/:text/:lang1/:lang2', realApi.translate);
 
 // Set up our little demo API
 var api = require('./fakeApi');

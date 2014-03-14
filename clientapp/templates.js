@@ -40,7 +40,7 @@ exports["pages"]["collectionDemo"] = function tmpl_pages_collectionDemo(locals) 
 // pages/config.jade compiled template
 exports["pages"]["config"] = function tmpl_pages_config(locals) {
     var buf = [];
-    buf.push('<section class="page config"><h1>Translation :: Configure </h1><div class="row"><b>Write a sentence: </b><input class="sentence"/></div><div class="row"><b>Select the language path: </b><input class="languagePath"/></div><a href="/test.css">config</a></section>');
+    buf.push('<section class="page config"><h1 class="page-header">Configure</h1><div class="form-group"><label for="sentence">Sentence</label><input id="sentence" type="text" placeholder="Type a sentence here to translate ever several languages and back to original" class="form-control"/></div><div class="form-group"><label for="langPath">Language path</label><input id="langPath" type="text" placeholder="pt,en,ja" class="form-control"/></div><button class="btn btn-default translate">Translate</button></section>');
     return buf.join('');
 };
 
@@ -61,7 +61,7 @@ exports["pages"]["info"] = function tmpl_pages_info(locals) {
 // pages/result.jade compiled template
 exports["pages"]["result"] = function tmpl_pages_result(locals) {
     var buf = [];
-    buf.push('<section class="page result"><h1>Result</h1></section>');
+    buf.push('<section class="page result"><h1 class="page-header">Result</h1><pre class="result"></pre></section>');
     return buf.join('');
 };
 
