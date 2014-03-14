@@ -6,6 +6,12 @@ module.exports = function (grunt) {
     grunt.initConfig({
         nodeunit: {
             files: ['tests/**/*.js'],
+            options: {
+                reporter: 'verbose',
+                reporterOptions: {
+                    output: 'outputdir'
+                }
+            }
         },
         jshint: {
             options: {
@@ -40,7 +46,7 @@ module.exports = function (grunt) {
                 files: '<%= jshint.test.src %>',
                 tasks: ['jshint:test', 'nodeunit']
             },
-        },
+        }
     });
 
     // These plugins provide necessary tasks.
@@ -50,6 +56,6 @@ module.exports = function (grunt) {
 
     // Default task.
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('test', ['jshint', 'nodeunit']);
+    grunt.registerTask('test', ['nodeunit']);
 
 };
