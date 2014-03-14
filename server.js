@@ -1,4 +1,6 @@
 /*global console*/
+'use strict';
+
 var path = require('path');
 var express = require('express');
 var helmet = require('helmet');
@@ -12,14 +14,14 @@ var app = express();
 // a little helper for fixing paths for various enviroments
 var fixPath = function (pathString) {
     return path.resolve(path.normalize(pathString));
-}
-
+};
 
 // -----------------
 // Configure express
 // -----------------
 app.use(express.compress());
 app.use(express.static(fixPath('public')));
+
 // we only want to expose tests in dev
 if (config.isDev) {
     app.use(express.static(fixPath('clienttests/assets')));
@@ -48,7 +50,7 @@ var clientApp = new Moonboots({
         fixPath('clientapp/libraries/zepto.js')
     ],
     stylesheets: [
-        fixPath('public/css/bootstrap.css'),
+        fixPath('public/css/bootstrap.min.css'),
         fixPath('public/css/app.css')
     ],
     browserify: {
@@ -76,7 +78,6 @@ var clientApp = new Moonboots({
         }
     }
 });
-
 
 // Set up our little demo API
 var api = require('./fakeApi');

@@ -1,5 +1,9 @@
 /*global app, me, $*/
 var Backbone = require('backbone');
+
+var Config = require('./pages/config');
+var Result = require('./pages/result');
+
 var HomePage = require('./pages/home');
 var CollectionDemo = require('./pages/collectionDemo');
 var InfoPage = require('./pages/info');
@@ -7,12 +11,26 @@ var InfoPage = require('./pages/info');
 
 module.exports = Backbone.Router.extend({
     routes: {
-        '': 'home',
+        '': 'config',
+        'config': 'config',
+        'result': 'result',
         'collections': 'collectionDemo',
         'info': 'info'
     },
 
     // ------- ROUTE HANDLERS ---------
+    config: function () {
+        app.renderPage(new Config({
+            model: me
+        }));
+    },
+
+    result: function () {
+        app.renderPage(new Result({
+            model: me
+        }));
+    },
+
     home: function () {
         app.renderPage(new HomePage({
             model: me

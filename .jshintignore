@@ -1,0 +1,4 @@
+node_modules
+clientapp/libraries
+clientapp/templates.js
+clienttests

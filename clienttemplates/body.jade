@@ -1,14 +1,29 @@
 body
   .container
-    .navbar
-      .navbar-inner
-        a.brand(href="#") Translate And Backbone
-        ul.nav
-          li
-            a(href="/") home
-          li
-            a(href="/collections") collection demo
-          li
-            a(href="/info") more info
+    nav.navbar.navbar-default(role='navigation')
+        .container-fluid
+            //
+               Brand and toggle get grouped for better mobile display 
+            .navbar-header
+              button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              a.navbar-brand(href='/') Translation and Back(bone)
+            //
+               Collect the nav links, forms, and other content for toggling 
+            #bs-example-navbar-collapse-1.collapse.navbar-collapse
+              ul.nav.navbar-nav
+                li
+                  a(href="/") config
+                li
+                  a(href="/result") result
+
+                li
+                  a(href="/collections") collection demo
 
     main#pages
+
+
+

@@ -12,7 +12,7 @@ exports["pages"] = {};
 // body.jade compiled template
 exports["body"] = function tmpl_body(locals) {
     var buf = [];
-    buf.push('<body><div class="container"><div class="navbar"><div class="navbar-inner"><a href="#" class="brand">Translate And Backbone</a><ul class="nav"><li><a href="/">home</a></li><li><a href="/collections">collection demo</a></li><li><a href="/info">more info</a></li></ul></div></div><main id="pages"></main></div></body>');
+    buf.push('<body><div class="container"><nav role="navigation" class="navbar navbar-default"><div class="container-fluid"><!--<Brand>and toggle get grouped for better mobile display </Brand>--><div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand">Translation and Back(bone)</a></div><!--<Collect>the nav links, forms, and other content for toggling </Collect>--><div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="/">config</a></li><li><a href="/result">result</a></li><li><a href="/collections">collection demo</a></li></ul></div></div></nav><main id="pages"></main></div></body>');
     return buf.join('');
 };
 
@@ -37,6 +37,13 @@ exports["pages"]["collectionDemo"] = function tmpl_pages_collectionDemo(locals) 
     return buf.join('');
 };
 
+// pages/config.jade compiled template
+exports["pages"]["config"] = function tmpl_pages_config(locals) {
+    var buf = [];
+    buf.push('<section class="page config"><h1>Translation :: Configure </h1><div class="row"><b>Write a sentence: </b><input class="sentence"/></div><div class="row"><b>Select the language path: </b><input class="languagePath"/></div><a href="/test.css">config</a></section>');
+    return buf.join('');
+};
+
 // pages/home.jade compiled template
 exports["pages"]["home"] = function tmpl_pages_home(locals) {
     var buf = [];
@@ -48,6 +55,13 @@ exports["pages"]["home"] = function tmpl_pages_home(locals) {
 exports["pages"]["info"] = function tmpl_pages_info(locals) {
     var buf = [];
     buf.push('<section class="page pageTwo"><h2>More Info</h2><p>This is a demo app by <a href="http://twitter.com">Henrik Joreteg</a>.</p><h4>Relevant links:</h4><ul><li> <a href="http://humanjavascript.com">human javascript</a> &mdash; the book</li><li> <a href="https://github.com/HenrikJoreteg/humanjs-sample-app">github repo </a> &mdash; for this app</li><li> <a href="http://andyet.com">&yet</a> &mdash; The company behind this effort.</li></ul><h4>Finding Packages</h4><ul><li><a href="http://projects.joreteg.com/humanjs-resources/">humanjs resources</a> &mdash; A few curated modules with a quick search</li><li><a href="https://github.com/component">Component </a> &mdash; Lots of tools here in tiny modules. Most are on npm as {{name}}-component</li><li><a href="http://browserify.org/search">Browserify module search</a> &mdash; Searches npm for browserify packages</li></ul><h4>Apps Built this way</h4><ul><li> <a href="http://andbang.com">And Bang</a> &mdash; Team same-pagification tool. Realtime chat + task management</li><li> <a href="http://talky.io">Talky </a> &mdash; Free, zero-setup, no-account, peer-to-peer encrypted video calls</li></ul></section>');
+    return buf.join('');
+};
+
+// pages/result.jade compiled template
+exports["pages"]["result"] = function tmpl_pages_result(locals) {
+    var buf = [];
+    buf.push('<section class="page result"><h1>Result</h1></section>');
     return buf.join('');
 };
 
