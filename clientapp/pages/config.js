@@ -1,8 +1,9 @@
-/*global $, app*/
+/*global app*/
 'use strict';
 
 var PageView = require('./base');
 var templates = require('../templates');
+var TranslatorController = require('../controllers/translator');
 
 module.exports = PageView.extend({
     template: templates.pages.config,
@@ -27,18 +28,18 @@ module.exports = PageView.extend({
         app.transPackage.langPath = langPath.val();
 
         var langs = app.transPackage.langPath.split(',');
-        this.callTranslate(app.transPackage.sentence, langs[0], langs[1]);
+        
+        var translatorController = new TranslatorController();
+        translatorController.callTranslate(
+            app.transPackage.sentence,
+            langs[0],
+            langs[1],
+            function (result) {
+                this.model.result = result;
+            }.bind(this)
+        );
     },
 
-    callTranslate: function (text, from, to) {
-        $.ajax({
-            type: 'GET',
-            url: '/api/translate/' + text + '/' + from + '/' + to,
-        })
-        .done(function (result) {
-            console.log(result);
-            this.model.result = result;
-        }.bind(this));
-    },
+
 
 });
