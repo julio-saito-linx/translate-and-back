@@ -22,7 +22,8 @@
     "underscore": "1.5.2",
     "stylizer": "0.3.1",
     "rsvp": "~3.0.6",
-    "querystring": "~0.2.0"
+    "querystring": "~0.2.0",
+    "nodeunit": "~0.8.6"
   },
   "devDependencies": {
     "precommit-hook": "0.3.8"
