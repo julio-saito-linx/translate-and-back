@@ -47,10 +47,12 @@ var clientApp = new Moonboots({
     main: fixPath('clientapp/app.js'),
     developmentMode: config.isDev,
     libraries: [
-        fixPath('clientapp/libraries/jquery.min.js')
+        fixPath('clientapp/libraries/jquery.min.js'),
+        fixPath('clientapp/libraries/bootstrap.js')
     ],
     stylesheets: [
-        fixPath('public/css/bootstrap.min.css'),
+        fixPath('public/css/bootstrap.css'),
+        fixPath('public/css/bootstrap-theme.css'),
         fixPath('public/css/app.css')
     ],
     browserify: {

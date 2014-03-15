@@ -132,6 +132,8 @@ exports.transPackageValidation = {
 
     'translateAll() returns an Array': function (test) {
         var translatorManager = new TranslatorManager();
+
+        // dont know why, but this was necessary!
         translatorManager.results = [];
 
 

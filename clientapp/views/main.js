@@ -6,7 +6,7 @@
 var HumanView = require('human-view');
 var _ = require('underscore');
 var templates = require('../templates');
-var tracking = require('../helpers/metrics');
+//var tracking = require('../helpers/metrics');
 var setFavicon = require('favicon-setter');
 
 
@@ -17,7 +17,8 @@ module.exports = HumanView.extend({
         app.history.on('route', this.updateActiveNav, this);
     },
     events: {
-        'click a[href]': 'handleLinkClick'
+        'click a.route': 'handleLinkClick',
+        'click a.language': 'changeLanguage',
     },
     render: function () {
         // some additional stuff we want to add to the document head
@@ -43,6 +44,13 @@ module.exports = HumanView.extend({
             app.navigate(path);
             return false;
         }
+    },
+
+    changeLanguage: function (e) {
+        e.preventDefault();
+
+        var path = $(e.target)[0].pathname.slice(1);
+        console.log('language selected:', path);
     },
 
     updateActiveNav: function () {

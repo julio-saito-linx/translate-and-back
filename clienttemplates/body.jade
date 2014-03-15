@@ -16,12 +16,67 @@ body
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
               ul.nav.navbar-nav
                 li
-                  a(href="/") config
+                  a.route(href="/") config
                 li
-                  a(href="/result") result
+                  a.route(href="/result") result
 
                 li
-                  a(href="/collections") collection demo
+                  a.route(href="/collections") collection demo
+
+
+              ul.nav.navbar-nav.navbar-right
+                li
+                  li.dropdown
+                    a.dropdown-toggle(href='#', data-toggle='dropdown')
+                      | Language
+                      b.caret
+                    ul.dropdown-menu
+                      li
+                        a.language(href='ar')  Arabic
+                        a.language(href='bg')  Bulgarian
+                        a.language(href='ca')  Catalan
+                        a.language(href='zh-CHS')  Chinese Simplified
+                        a.language(href='zh-CHT')  Chinese Traditional
+                        a.language(href='cs')  Czech
+                        a.language(href='da')  Danish
+                        a.language(href='nl')  Dutch
+                        a.language(href='en')  English
+                        a.language(href='et')  Estonian
+                        a.language(href='fi')  Finnish
+                        a.language(href='fr')  French
+                        a.language(href='de')  German
+                        a.language(href='el')  Greek
+                        a.language(href='ht')  Haitian Creole
+                        a.language(href='he')  Hebrew
+                        a.language(href='hi')  Hindi
+                        a.language(href='mww')  Hmong Daw
+                        a.language(href='hu')  Hungarian
+                        a.language(href='id')  Indonesian
+                        a.language(href='it')  Italian
+                        a.language(href='ja')  Japanese
+                        a.language(href='tlh')  Klingon
+                        a.language(href='tlh-Qaak')  Klingon (pIqaD)
+                        a.language(href='ko')  Korean
+                        a.language(href='lv')  Latvian
+                        a.language(href='lt')  Lithuanian
+                        a.language(href='ms')  Malay
+                        a.language(href='mt')  Maltese
+                        a.language(href='no')  Norwegian
+                        a.language(href='fa')  Persian
+                        a.language(href='pl')  Polish
+                        a.language(href='pt')  Portuguese
+                        a.language(href='ro')  Romanian
+                        a.language(href='ru')  Russian
+                        a.language(href='sk')  Slovak
+                        a.language(href='sl')  Slovenian
+                        a.language(href='es')  Spanish
+                        a.language(href='sv')  Swedish
+                        a.language(href='th')  Thai
+                        a.language(href='tr')  Turkish
+                        a.language(href='uk')  Ukrainian
+                        a.language(href='ur')  Urdu
+                        a.language(href='vi')  Vietnamese
+                        a.language(href='cy')  Welsh
 
     main#pages
 
