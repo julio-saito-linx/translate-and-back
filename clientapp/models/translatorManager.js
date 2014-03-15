@@ -1,6 +1,7 @@
 var HumanModel = require('human-model');
 var TransResult = require('./transResult');
 var RSVP = require('rsvp');
+var async = require('async');
 RSVP.on('error', function (reason) {
     console.assert(false, reason);
 });
@@ -50,17 +51,36 @@ module.exports = HumanModel.define({
     translateAll: function (translatorController) {
         var promise = new RSVP.Promise(function (resolve, reject) {
 
-            var promises = this.transResultArray.map(function (transResult) {
-                return this.translateNext(translatorController, transResult);
-            }.bind(this));
+            // console.log('\n\n');
+            // console.dir(this.transResultArray);
+            // console.log('\n\n');
 
-            RSVP.all(promises).then(function (allTransResults) {
-                resolve(allTransResults);
-            }).catch(function (reason) {
-                reject(reason);
-            });
-
+            var transResult;
+            async.whilst(
+                function () {
+                    transResult = this.transResultArray.shift();
+                    return transResult;
+                }.bind(this),
+                function (callback) {
+                    this.translateNext(translatorController, transResult).then(function (result) {
+                        // console.log('\n\n');
+                        // console.log('transResult: ', result);
+                        // console.log('\n\n');
+                        callback();
+                    });
+                }.bind(this),
+                function (err) {
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        resolve(this.results);
+                    }
+                }.bind(this)
+            );
+        
         }.bind(this));
+
         return promise;
     },
 

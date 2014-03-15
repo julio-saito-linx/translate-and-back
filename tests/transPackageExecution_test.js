@@ -41,6 +41,7 @@ exports.transPackageValidation = {
         translatorManager.transPackage = transPackage;
         
         translatorManager.prepareResults().then(function (transResultArray) {
+            test.equal(transResultArray.length, 1);
             test.ok(_.isArray(transResultArray), 'must be an array');
             test.equal(typeof transResultArray[0], 'object', 'first element is an object');
             
@@ -59,6 +60,8 @@ exports.transPackageValidation = {
         translatorManager.transPackage = transPackage;
         
         translatorManager.prepareResults().then(function (transResultArray) {
+            test.equal(transResultArray.length, 3);
+
             test.equal(transResultArray[0].fromLang, 'pt');
             test.equal(transResultArray[0].toLang, 'en');
 
@@ -83,6 +86,7 @@ exports.transPackageValidation = {
         translatorManager.transPackage = transPackage;
         
         translatorManager.prepareResults().then(function (transResultArray) {
+            test.equal(transResultArray.length, 3);
             test.equal(transResultArray[0].fromSentence, 'Eu gosto de bananas');
             test.equal(transResultArray[1].fromSentence, '');
             
@@ -140,7 +144,7 @@ exports.transPackageValidation = {
             callTranslate: function (text/*, from, to*/) {
                 return {
                     then: function (cb) {
-                        cb(text + ',TRANSLATED');
+                        return cb(text + ',TRANSLATED');
                     }
                 };
             }
