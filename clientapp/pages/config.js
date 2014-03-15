@@ -3,7 +3,7 @@
 
 var PageView = require('./base');
 var templates = require('../templates');
-var TranslatorController = require('../controllers/translator');
+var TranslatorManager = require('../models/translatorManager');
 
 module.exports = PageView.extend({
     template: templates.pages.config,
@@ -27,16 +27,12 @@ module.exports = PageView.extend({
         app.transPackage.sentence = sentence.val();
         app.transPackage.langPath = langPath.val();
 
-        var langs = app.transPackage.langPath.split(',');
+        var translatorManager = new TranslatorManager();
+        translatorManager.transPackage = app.transPackage;
         
-        var translatorController = new TranslatorController();
-        translatorController.callTranslate(
-            app.transPackage.sentence,
-            langs[0],
-            langs[1]
-        )
-        .then(function (result) {
-            this.model.result = result;
+        translatorManager.translateAll().then(function (result) {
+            console.log(result);
+            this.model.result = result[0].toSentence;
         }.bind(this));
     },
 

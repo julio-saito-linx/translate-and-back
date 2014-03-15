@@ -1,5 +1,6 @@
 var HumanModel = require('human-model');
 var TransResult = require('./transResult');
+var TranslatorController = require('../controllers/translator');
 var RSVP = require('rsvp');
 RSVP.on('error', function (reason) {
     console.assert(false, reason);
@@ -38,6 +39,34 @@ module.exports = HumanModel.define({
             }
 
             resolve(transResultArray);
+        }.bind(this));
+        return promise;
+    },
+
+    translateAll: function () {
+        var promise = new RSVP.Promise(function (resolve) {
+
+            this.prepareResults().then(function (transResultArray) {
+
+                var translatorController = new TranslatorController();
+                for (var i = 0; i < transResultArray.length; i++) {
+                    var transResult = transResultArray[i];
+
+                    // Call Ajax
+                    translatorController.callTranslate(
+                        transResult.fromSentence,
+                        transResult.fromLang,
+                        transResult.toLang
+                    )
+                    .then(function (result) {
+                        transResult.toSentence = result;
+                    });
+
+                }
+                resolve(transResultArray);
+
+            });
+
         }.bind(this));
         return promise;
     }
