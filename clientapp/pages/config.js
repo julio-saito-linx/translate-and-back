@@ -36,8 +36,12 @@ module.exports = PageView.extend({
         
         translatorManager.prepareResults().then(function () {
 
-            translatorManager.translateNext(translatorController).then(function (result) {
-                console.log(result.toSentence);
+            translatorManager.translateAll(translatorController).then(function (results) {
+                results.forEach(function (transResult) {
+                    console.log(transResult.fromSentence);
+                    console.log(transResult.toSentence);
+                });
+                
                 //this.model.result = result[0].toSentence;
             }.bind(this));
 

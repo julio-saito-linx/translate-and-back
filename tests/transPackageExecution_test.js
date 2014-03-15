@@ -126,4 +126,46 @@ exports.transPackageValidation = {
         });
 
     },
+
+    'translateAll() returns an Array': function (test) {
+        var translatorManager = new TranslatorManager();
+
+        var transPackage = new TransPackage();
+        transPackage.sentence = 'Eu gosto de bananas';
+        transPackage.langPath = 'pt,en,ja,mx';
+
+        translatorManager.transPackage = transPackage;
+
+        var translatorControllerMocked = {
+            callTranslate: function (text/*, from, to*/) {
+                return {
+                    then: function (cb) {
+                        cb(text + ',TRANSLATED');
+                    }
+                };
+            }
+        };
+        
+        translatorManager.prepareResults().then(function () {
+            
+            translatorManager.translateAll(translatorControllerMocked)
+            .then(function (allTransResults) {
+                test.equal(allTransResults.length, 3);
+
+                test.equal(allTransResults[0].fromLang, 'pt');
+                test.equal(allTransResults[0].fromSentence, 'Eu gosto de bananas');
+                test.equal(allTransResults[0].toLang, 'en');
+                test.equal(allTransResults[0].toSentence, 'Eu gosto de bananas,TRANSLATED');
+
+                test.equal(allTransResults[1].fromLang, 'en');
+                test.equal(allTransResults[1].fromSentence, 'Eu gosto de bananas,TRANSLATED');
+                test.equal(allTransResults[1].toLang, 'ja');
+                test.equal(allTransResults[1].toSentence, 'Eu gosto de bananas,TRANSLATED,TRANSLATED');
+
+                test.done();
+            });
+
+        });
+
+    },
 };

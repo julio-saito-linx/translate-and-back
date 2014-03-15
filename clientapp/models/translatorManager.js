@@ -10,7 +10,7 @@ module.exports = HumanModel.define({
     props: {
         transPackage: 'object',
         transResultArray: 'array',
-        results: 'array'
+        results: ['array', false, []]
     },
 
     prepareResults: function () {
@@ -66,7 +66,7 @@ module.exports = HumanModel.define({
 
     translateNext: function (translatorController, transResult) {
         var promise = new RSVP.Promise(function (resolve, reject) {
-            // sets "from" equals "to" from previous
+            // // sets "from" equals "to" from previous
             if (transResult.fromSentence === '' && this.results.length > 0) {
                 transResult.fromSentence = this.results[this.results.length - 1].toSentence;
             }
@@ -79,6 +79,7 @@ module.exports = HumanModel.define({
             )
             .then(function (result) {
                 transResult.toSentence = result;
+                this.results.push(transResult);
                 resolve(transResult);
             }.bind(this)).catch(function (reason) {
                 reject(reason);
