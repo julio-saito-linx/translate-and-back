@@ -22,6 +22,7 @@
 
 var TranslatorManager = require('../clientapp/models/translatorManager');
 var TransPackage = require('../clientapp/models/transPackage');
+// var TransResult = require('../clientapp/models/transResult');
 var _ = require('underscore');
 
 exports.transPackageValidation = {
@@ -30,7 +31,7 @@ exports.transPackageValidation = {
         done();
     },
 
-    'start() returns a promise with an array of transResult': function (test) {
+    'prepareResults() returns a promise with an array of transResult': function (test) {
         var translatorManager = new TranslatorManager();
 
         var transPackage = new TransPackage();
@@ -42,12 +43,13 @@ exports.transPackageValidation = {
         translatorManager.prepareResults().then(function (transResultArray) {
             test.ok(_.isArray(transResultArray), 'must be an array');
             test.equal(typeof transResultArray[0], 'object', 'first element is an object');
+            
+            test.done();
         });
 
-        test.done();
     },
 
-    'start() verifying transResultArray ': function (test) {
+    'prepareResults() verifying transResultArray ': function (test) {
         var translatorManager = new TranslatorManager();
 
         var transPackage = new TransPackage();
@@ -65,8 +67,63 @@ exports.transPackageValidation = {
 
             test.equal(transResultArray[2].fromLang, 'ja');
             test.equal(transResultArray[2].toLang, 'mx');
+            
+            test.done();
         });
 
-        test.done();
+    },
+
+    'prepareResults() sets first transResultArray item the original sentence ': function (test) {
+        var translatorManager = new TranslatorManager();
+
+        var transPackage = new TransPackage();
+        transPackage.sentence = 'Eu gosto de bananas';
+        transPackage.langPath = 'pt,en,ja,mx';
+
+        translatorManager.transPackage = transPackage;
+        
+        translatorManager.prepareResults().then(function (transResultArray) {
+            test.equal(transResultArray[0].fromSentence, 'Eu gosto de bananas');
+            test.equal(transResultArray[1].fromSentence, '');
+            
+            test.done();
+        });
+
+    },
+
+    'translateNext() returns transResult': function (test) {
+        var translatorManager = new TranslatorManager();
+
+        var transPackage = new TransPackage();
+        transPackage.sentence = 'Eu gosto de bananas';
+        transPackage.langPath = 'pt,en,ja,mx';
+
+        translatorManager.transPackage = transPackage;
+
+        var translatorControllerMocked = {
+            callTranslate: function (text/*, from, to*/) {
+                return {
+                    then: function (cb) {
+                        cb(text + ',TRANSLATED');
+                    }
+                };
+            }
+        };
+        
+        translatorManager.prepareResults().then(function (transResultArray) {
+            var transResult = transResultArray[0];
+
+            translatorManager.translateNext(translatorControllerMocked, transResult)
+            .then(function (transResult) {
+                test.equal(transResult.fromLang, 'pt');
+                test.equal(transResult.fromSentence, 'Eu gosto de bananas');
+                test.equal(transResult.toLang, 'en');
+                test.equal(transResult.toSentence, 'Eu gosto de bananas,TRANSLATED');
+
+                test.done();
+            });
+
+        });
+
     },
 };

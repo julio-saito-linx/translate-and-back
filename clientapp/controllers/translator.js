@@ -9,6 +9,8 @@ RSVP.on('error', function (reason) {
 module.exports = function () {
 
     this.callTranslate = function (text, from, to) {
+        console.log('callTranslate:', text, from, to);
+        
         var promise = new RSVP.Promise(function (resolve, reject) {
             var request = $.ajax({
                 type: 'GET',

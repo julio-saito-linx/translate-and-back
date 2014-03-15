@@ -1,6 +1,5 @@
 var HumanModel = require('human-model');
 var TransResult = require('./transResult');
-var TranslatorController = require('../controllers/translator');
 var RSVP = require('rsvp');
 RSVP.on('error', function (reason) {
     console.assert(false, reason);
@@ -10,11 +9,12 @@ RSVP.on('error', function (reason) {
 module.exports = HumanModel.define({
     props: {
         transPackage: 'object',
-        results: 'array',
+        transResultArray: 'array',
+        results: 'array'
     },
 
     prepareResults: function () {
-        var transResultArray = [];
+        this.transResultArray = [];
         var promise = new RSVP.Promise(function (resolve, reject) {
 
             // TransPackage Validation
@@ -35,39 +35,56 @@ module.exports = HumanModel.define({
                 transResult.fromLang = lang1;
                 transResult.toLang = lang2;
 
-                transResultArray.push(transResult);
+                if (i === 0) {
+                    transResult.fromSentence = transPackage.sentence;
+                }
+
+                this.transResultArray.push(transResult);
             }
 
-            resolve(transResultArray);
+            resolve(this.transResultArray);
         }.bind(this));
         return promise;
     },
 
-    translateAll: function () {
-        var promise = new RSVP.Promise(function (resolve) {
+    translateAll: function (translatorController) {
+        var promise = new RSVP.Promise(function (resolve, reject) {
 
-            this.prepareResults().then(function (transResultArray) {
+            var promises = this.transResultArray.map(function (transResult) {
+                return this.translateNext(translatorController, transResult);
+            }.bind(this));
 
-                var translatorController = new TranslatorController();
-                for (var i = 0; i < transResultArray.length; i++) {
-                    var transResult = transResultArray[i];
-
-                    // Call Ajax
-                    translatorController.callTranslate(
-                        transResult.fromSentence,
-                        transResult.fromLang,
-                        transResult.toLang
-                    )
-                    .then(function (result) {
-                        transResult.toSentence = result;
-                    });
-
-                }
-                resolve(transResultArray);
-
+            RSVP.all(promises).then(function (allTransResults) {
+                resolve(allTransResults);
+            }).catch(function (reason) {
+                reject(reason);
             });
 
         }.bind(this));
         return promise;
+    },
+
+    translateNext: function (translatorController, transResult) {
+        var promise = new RSVP.Promise(function (resolve, reject) {
+            // sets "from" equals "to" from previous
+            if (transResult.fromSentence === '' && this.results.length > 0) {
+                transResult.fromSentence = this.results[this.results.length - 1].toSentence;
+            }
+
+            // Call Ajax
+            translatorController.callTranslate(
+                transResult.fromSentence,
+                transResult.fromLang,
+                transResult.toLang
+            )
+            .then(function (result) {
+                transResult.toSentence = result;
+                resolve(transResult);
+            }.bind(this)).catch(function (reason) {
+                reject(reason);
+            });
+        }.bind(this));
+        return promise;
     }
+
 });

@@ -4,6 +4,7 @@
 var PageView = require('./base');
 var templates = require('../templates');
 var TranslatorManager = require('../models/translatorManager');
+var TranslatorController = require('../controllers/translator');
 
 module.exports = PageView.extend({
     template: templates.pages.config,
@@ -29,10 +30,17 @@ module.exports = PageView.extend({
 
         var translatorManager = new TranslatorManager();
         translatorManager.transPackage = app.transPackage;
+
+        // translatorController will be injected
+        var translatorController = new TranslatorController();
         
-        translatorManager.translateAll().then(function (result) {
-            console.log(result);
-            this.model.result = result[0].toSentence;
+        translatorManager.prepareResults().then(function () {
+
+            translatorManager.translateNext(translatorController).then(function (result) {
+                console.log(result.toSentence);
+                //this.model.result = result[0].toSentence;
+            }.bind(this));
+
         }.bind(this));
     },
 
