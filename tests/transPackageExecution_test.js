@@ -22,7 +22,6 @@
 
 var TranslatorManager = require('../clientapp/models/translatorManager');
 var TransPackage = require('../clientapp/models/transPackage');
-// var TransResult = require('../clientapp/models/transResult');
 var _ = require('underscore');
 
 exports.transPackageValidation = {
@@ -133,6 +132,8 @@ exports.transPackageValidation = {
 
     'translateAll() returns an Array': function (test) {
         var translatorManager = new TranslatorManager();
+        translatorManager.results = [];
+
 
         var transPackage = new TransPackage();
         transPackage.sentence = 'Eu gosto de bananas';
@@ -151,7 +152,7 @@ exports.transPackageValidation = {
         };
         
         translatorManager.prepareResults().then(function () {
-            
+
             translatorManager.translateAll(translatorControllerMocked)
             .then(function (allTransResults) {
                 test.equal(allTransResults.length, 3);

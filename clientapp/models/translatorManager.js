@@ -51,10 +51,6 @@ module.exports = HumanModel.define({
     translateAll: function (translatorController) {
         var promise = new RSVP.Promise(function (resolve, reject) {
 
-            // console.log('\n\n');
-            // console.dir(this.transResultArray);
-            // console.log('\n\n');
-
             var transResult;
             async.whilst(
                 function () {
@@ -63,9 +59,6 @@ module.exports = HumanModel.define({
                 }.bind(this),
                 function (callback) {
                     this.translateNext(translatorController, transResult).then(function (result) {
-                        // console.log('\n\n');
-                        // console.log('transResult: ', result);
-                        // console.log('\n\n');
                         callback();
                     });
                 }.bind(this),
