@@ -3,11 +3,12 @@
 
 var PageView = require('./base');
 var templates = require('../templates');
+var TransResultView = require('../views/transResult');
 var TranslatorManager = require('../models/translatorManager');
 var TranslatorController = require('../controllers/translator');
 
 module.exports = PageView.extend({
-    template: templates.pages.config,
+    template: templates.pages.translate,
     title: 'Translation Config',
     events: {
         'click .translate': 'translate'
@@ -31,23 +32,30 @@ module.exports = PageView.extend({
         var translatorManager = new TranslatorManager();
         translatorManager.transPackage = app.transPackage;
 
-        // translatorController will be injected
-        var translatorController = new TranslatorController();
-        
+        // callback
+        translatorManager.translationResultCallback = this.translationReceived.bind(this);
+
+        // start
         translatorManager.prepareResults().then(function () {
 
-            translatorManager.translateAll(translatorController).then(function (results) {
-                results.forEach(function (transResult) {
-                    console.log("fromSentence: " + transResult.fromSentence);
-                    console.log("toSentence: " + transResult.toSentence + "\n");
-                });
-                
-                //this.model.result = result[0].toSentence;
+            translatorManager.translateAll(new TranslatorController())
+            .then(function (results) {
+                // all finished
+                console.log('all', results.length, 'finished');
             }.bind(this));
 
         }.bind(this));
     },
 
+    translationReceived: function (transResult) {
+        var transResultView = new TransResultView({
+            model: transResult
+        });
 
+        var jUl = this.$el.find('.results');
+        transResultView.render();
+        jUl.append(transResultView.el);
+        console.log(transResultView);
+    }
 
 });

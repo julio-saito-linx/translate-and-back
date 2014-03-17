@@ -1,52 +1,27 @@
 /*global app, me, $*/
 var Backbone = require('backbone');
 
-var Config = require('./pages/config');
-var Result = require('./pages/result');
-
-var HomePage = require('./pages/home');
-var CollectionDemo = require('./pages/collectionDemo');
-var InfoPage = require('./pages/info');
+var TranslatePage = require('./pages/translate');
+var AboutPage = require('./pages/about');
 
 
 module.exports = Backbone.Router.extend({
     routes: {
-        '': 'config',
-        'config': 'config',
-        'result': 'result',
-        'collections': 'collectionDemo',
-        'info': 'info'
+        '': 'translate',
+        'translate': 'translate',
+        'about': 'about'
     },
 
     // ------- ROUTE HANDLERS ---------
-    config: function () {
-        app.renderPage(new Config({
+    translate: function () {
+        app.renderPage(new TranslatePage({
             model: app.transPackage
         }));
     },
 
-    result: function () {
-        app.renderPage(new Result({
-            model: app.transPackage
-        }));
-    },
-
-    home: function () {
-        app.renderPage(new HomePage({
+    about: function () {
+        app.renderPage(new AboutPage({
             model: me
         }));
     },
-
-    collectionDemo: function () {
-        app.renderPage(new CollectionDemo({
-            model: me,
-            collection: app.people
-        }));
-    },
-
-    info: function () {
-        app.renderPage(new InfoPage({
-            model: me
-        }));
-    }
 });

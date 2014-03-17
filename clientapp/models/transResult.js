@@ -10,7 +10,7 @@ module.exports = HumanModel.define({
         toLang: ['string', true, ''],
         toSentence: ['string', true, ''],
 
-        sideLang: ['string', true, ''],
+        sideLang: ['string', true, 'pt'],
         sideSentence: ['string', true, ''],
     }
 });

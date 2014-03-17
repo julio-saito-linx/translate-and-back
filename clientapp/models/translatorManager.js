@@ -11,7 +11,9 @@ module.exports = HumanModel.define({
     props: {
         transPackage: 'object',
         transResultArray: 'array',
-        results: ['array', false, []]
+        results: ['array', false, []],
+        translationResultCallback: 'function',
+        translationAllResultsCallback: 'function'
     },
 
     prepareResults: function () {
@@ -58,7 +60,8 @@ module.exports = HumanModel.define({
                     return transResult;
                 }.bind(this),
                 function (callback) {
-                    this.translateNext(translatorController, transResult).then(function (result) {
+                    this.translateNext(translatorController, transResult)
+                    .then(function (/* result */) {
                         callback();
                     });
                 }.bind(this),
@@ -84,17 +87,28 @@ module.exports = HumanModel.define({
                 transResult.fromSentence = this.results[this.results.length - 1].toSentence;
             }
 
-            // Call Ajax
+            // First Translation
             translatorController.callTranslate(
                 transResult.fromSentence,
                 transResult.fromLang,
                 transResult.toLang
             )
-            .then(function (result) {
-                transResult.toSentence = result;
+            .then(function (firstResult) {
+                transResult.toSentence = firstResult;
+
+                // Second Translation
+                return translatorController.callTranslate(
+                            transResult.toSentence,
+                            transResult.toLang,
+                            transResult.sideLang);
+            }.bind(this))
+            .then(function (sideResult) {
+                transResult.sideSentence = sideResult;
                 this.results.push(transResult);
+                this.translationResultCallback(transResult);
                 resolve(transResult);
-            }.bind(this)).catch(function (reason) {
+            }.bind(this))
+            .catch(function (reason) {
                 reject(reason);
             });
         }.bind(this));

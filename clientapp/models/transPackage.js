@@ -3,8 +3,8 @@ var HumanModel = require('human-model');
 module.exports = HumanModel.define({
     props: {
         id: 'number',
-        sentence: ['string', true, 'Veja que chuva mais gostosa. Veja como ela cai na selva.'],
-        langPath: ['string', true, 'pt,ja,pt'],
+        sentence: ['string', true, 'Adoro comer pasteis de palmito pela manhã.'],
+        langPath: ['string', true, 'pt,lv,fi,ru'],
         result: ['string', true, '']
     },
 

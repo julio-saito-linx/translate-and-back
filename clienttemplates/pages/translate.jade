@@ -1,13 +1,13 @@
 section.page.config
-  h1.page-header Configure
+  h1.page-header Translate and Back
 
   .form-group
-    label(for='sentence') Sentence
+    label(for='sentence') Type a sentence
     input#sentence.form-control(type='text', placeholder='Type a sentence here to translate ever several languages and back to original')
   .form-group
-    label(for='langPath') Language path
+    label(for='langPath') Choose the translations path
     input#langPath.form-control(type='text', placeholder='pt,en,ja')
-  button.btn.btn-default.translate Translate
 
+  button.btn.btn-default.translate Start
 
-
+  ul.results.col-lg-12
