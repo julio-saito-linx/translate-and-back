@@ -23,6 +23,9 @@ module.exports = PageView.extend({
     },
     
     translate: function () {
+        // clear results
+        this.$el.find('.results').html('');
+
         var sentence = this.$el.find('#sentence');
         var langPath = this.$el.find('#langPath');
 

@@ -23,6 +23,10 @@
 var TranslatorManager = require('../clientapp/models/translatorManager');
 var TransPackage = require('../clientapp/models/transPackage');
 var _ = require('underscore');
+var RSVP = require('rsvp');
+RSVP.on('error', function (reason) {
+    console.assert(false, reason);
+});
 
 exports.transPackageValidation = {
     setUp: function (done) {
@@ -104,20 +108,20 @@ exports.transPackageValidation = {
         translatorManager.transPackage = transPackage;
 
         var translatorControllerMocked = {
-            callTranslate: function (text/*, from, to*/) {
-                return {
-                    then: function (cb) {
-                        cb(text + ',TRANSLATED');
-                    }
-                };
+            callTranslate: function (text) {
+                var promise = new RSVP.Promise(function (resolve/*, reject */) {
+                    resolve(text + ',TRANSLATED');
+                });
+                return promise;
             }
         };
-        
+
         translatorManager.prepareResults().then(function (transResultArray) {
             var transResult = transResultArray[0];
 
             translatorManager.translateNext(translatorControllerMocked, transResult)
             .then(function (transResult) {
+
                 test.equal(transResult.fromLang, 'pt');
                 test.equal(transResult.fromSentence, 'Eu gosto de bananas');
                 test.equal(transResult.toLang, 'en');

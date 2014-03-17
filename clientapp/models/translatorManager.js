@@ -12,8 +12,8 @@ module.exports = HumanModel.define({
         transPackage: 'object',
         transResultArray: 'array',
         results: ['array', false, []],
-        translationResultCallback: 'function',
-        translationAllResultsCallback: 'function'
+        translationResultCallback: ['function', false, function () {}],
+        translationAllResultsCallback: ['function', false, , false, function () {}]
     },
 
     prepareResults: function () {
