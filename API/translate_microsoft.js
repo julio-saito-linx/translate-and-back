@@ -2,7 +2,7 @@
 
 var querystring = require('querystring');
 var https = require('https');
-var config = require('./config/config');
+//var config = require('./config/config');
 var RSVP = require('rsvp');
 RSVP.on('error', function (reason) {
     console.assert(false, reason);
@@ -63,6 +63,7 @@ module.exports = function () {
     
         var promise = new RSVP.Promise(function (resolve, reject) {
 
+            var config = {};
             var data = 'scope=' +  encodeURIComponent(config.scope);
             data += '&client_secret=' +  encodeURIComponent(config.client_secret);
             data += '&grant_type=' +  encodeURIComponent(config.grant_type);
