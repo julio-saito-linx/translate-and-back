@@ -40,7 +40,7 @@ exports["includes"]["transResult"] = function tmpl_includes_transResult(locals) 
 // pages/about.jade compiled template
 exports["pages"]["about"] = function tmpl_pages_about(locals) {
     var buf = [];
-    buf.push('<section class="page result"><h1 class="page-header">About</h1></section>');
+    buf.push('<section class="page result"><h1 class="page-header">About</h1><h3>Original repository</h3><p>fork and hack, at: <a href="https://github.com/saitodisse/translate-and-back">saitodisse/translate-and-back</a></p><h3>human javascript</h3><p>"a bag of pre-assembled little tools that you\'re free to rip apart". Includes nodejs, browserify, express, jade, backbone...<ul><li><a href="http://humanjavascript.com/">the book</a></li><li><a href="http://docs.humanjavascript.com/">docs</a></li><li><a href="https://github.com/HenrikJoreteg/humanjs">humanjs on GitHub</a></li></ul></p><h3>Microsoft Translator</h3><p>\tThis API is free to use with a limit of up to 2,000,000 characters per month<ul><li><a href="http://msdn.microsoft.com/en-us/library/hh454950.aspx">Obtaining an Access Token</a></li><li><a href="http://msdn.microsoft.com/en-us/library/ff512387.aspx">Using the HTTP Interface</a></li></ul></p></section>');
     return buf.join('');
 };
 
