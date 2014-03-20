@@ -12,7 +12,7 @@ module.exports = function () {
         var promise = new RSVP.Promise(function (resolve, reject) {
             var request = $.ajax({
                 type: 'GET',
-                url: '/api/translate/' + text + '/' + from + '/' + to,
+                url: '/api/translate/' + encodeURIComponent(text) + '/' + from + '/' + to,
             });
 
             request.done(function (result) {
