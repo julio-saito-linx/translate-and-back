@@ -26,7 +26,8 @@ module.exports = function (grunt) {
                     'clientapp/helpers/**/*.js',
                     'clientapp/models/**/*.js',
                     'clientapp/pages/**/*.js',
-                    'clientapp/views/**/*.js'
+                    'clientapp/views/**/*.js',
+                    'API/*.js'
                 ]
             },
             test: {
