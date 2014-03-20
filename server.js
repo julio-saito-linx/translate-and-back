@@ -102,5 +102,6 @@ var clientSettingsMiddleware = function (req, res, next) {
 app.get('*', clientSettingsMiddleware, clientApp.html());
 
 // listen for incoming http requests on the port as specified in our config
-app.listen(config.http.port);
-console.log('Translate And Backbone is running at: http://localhost:' + config.http.port + ' Yep. That\'s pretty awesome.');
+var port = process.env.PORT || config.http.port || 5000;
+app.listen(port);
+console.log('Translate And Backbone is running at: http://localhost:' + port + ' Yep. That\'s pretty awesome.');
