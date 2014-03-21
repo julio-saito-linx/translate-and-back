@@ -1,8 +1,20 @@
-# human javascript sample app
+# Translate and Back(bone)
+
+Translate and back to the original language, see what happens.
+
+## TODO
+
+  - facebook connect (passport)
+  - save translations (mongo-db)
+  - translate the web site
+  - better looking web site
+
+
+### human javascript starting tips
 
 This sample app goes along with the book: http://humanjavascript.com
 
-## How to run it
+#### How to run it
 
 1. download/install [node.js](http://nodejs.org/)
 1. download/install [git](http://git-scm.com/)
@@ -12,6 +24,6 @@ This sample app goes along with the book: http://humanjavascript.com
 1. run it: `node server`
 1. open http://localhost:3000 in a browser
 
-## License
+### License
 
 MIT
