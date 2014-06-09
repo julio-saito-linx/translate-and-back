@@ -1,3 +1,5 @@
+by: [saitodisse](http://saitodisse.github.io/)
+
 # Translate and Back(bone)
 
 Translate and back to the original language, see what happens.
